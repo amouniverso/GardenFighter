@@ -6,17 +6,17 @@ using UnityEngine.UI;
 
 public class PlayerScript : MonoBehaviour
 {
-    [SerializeField] private Transform groundCheckTransform;
-    [SerializeField] private LayerMask playerMask;
-    [SerializeField] private Rigidbody bullet;
+    [SerializeField] protected Transform groundCheckTransform;
+    [SerializeField] protected LayerMask playerMask;
+    [SerializeField] protected Rigidbody bullet;
     [SerializeField] public int health = 5;
     [SerializeField] public PlayerNumber playerNumber;
-    [SerializeField] private Text gameoverText;
+    [SerializeField] protected Text gameoverText;
 
-    private bool jumpKeyPressed;
-    private bool fireKeyPressed;
-    private float horizontalInput;
-    private float verticalInput;
+    protected bool jumpKeyPressed;
+    protected bool fireKeyPressed;
+    protected float horizontalInput;
+    protected float verticalInput;
 
     private bool jumpKey;
     private bool fireKey;
@@ -25,13 +25,13 @@ public class PlayerScript : MonoBehaviour
                  upKeyDown, upKeyUp,
                  downKeyDown, downKeyUp;
 
-    private const int VELOCITY = 4;
-    private const int ROTATION = 4;
-    private const int JUMP_POWER = 8;
-    private const int BULLET_SPEED = 5;
+    protected const int VELOCITY = 4;
+    protected const int ROTATION = 4;
+    protected const int JUMP_POWER = 8;
+    protected const int BULLET_SPEED = 5;
 
-    private AudioSource deathSound;
-    private Rigidbody rgdbody;
+    protected AudioSource deathSound;
+    protected Rigidbody rgdbody;
 
     public enum PlayerNumber
     {

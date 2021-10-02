@@ -15,7 +15,7 @@ namespace HelloWorld
 
         public override void NetworkStart()
         {
-            Move();
+            //Move();
         }
 
         public void Move()
@@ -45,7 +45,7 @@ namespace HelloWorld
 
         void Update()
         {
-            transform.position = Position.Value;
+            //transform.position = Position.Value;
         }
     }
 }
