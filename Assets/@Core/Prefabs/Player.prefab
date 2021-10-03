@@ -185,6 +185,7 @@ MonoBehaviour:
   health: 10
   playerNumber: 1
   gameoverText: {fileID: 0}
+  healthRenderer: {fileID: -5688316075995732524, guid: 9f179463631daf04fab076ab8efcccfe, type: 3}
 --- !u!65 &6475535168600794112
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -323,5 +324,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c49cd3079208b554781005db1c1aba95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Position:
-    m_InternalValue: {x: 0, y: 0, z: 0}

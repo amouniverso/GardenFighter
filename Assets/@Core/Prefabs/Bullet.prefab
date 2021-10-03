@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 7589970633512059615}
   - component: {fileID: 8151072995644810576}
   - component: {fileID: 4793073792853995375}
-  - component: {fileID: 4987075741900216164}
+  - component: {fileID: -2989027628921692849}
   m_Layer: 0
   m_Name: Bullet
   m_TagString: Untagged
@@ -349,7 +349,7 @@ MonoBehaviour:
   PrefabHashGenerator: Bullet
   AlwaysReplicateAsRoot: 0
   DontDestroyWithOwner: 0
---- !u!114 &4987075741900216164
+--- !u!114 &-2989027628921692849
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

@@ -7,45 +7,53 @@ namespace HelloWorld
 {
     public class NetworkPlayer : NetworkBehaviour
     {
-        public NetworkVariableVector3 Position = new NetworkVariableVector3(new NetworkVariableSettings
-        {
-            WritePermission = NetworkVariablePermission.ServerOnly,
-            ReadPermission = NetworkVariablePermission.Everyone
-        });
-
         public override void NetworkStart()
         {
-            //Move();
-        }
-
-        public void Move()
-        {
-            if (NetworkManager.Singleton.IsServer)
+            SetHealth();
+            if (!NetworkManager.Singleton.IsServer && IsOwner)
             {
-                var randomPosition = GetRandomPositionOnPlane();
-                transform.position = randomPosition;
-                Position.Value = randomPosition;
-            }
-            else
-            {
-                SubmitPositionRequestServerRpc();
+                SetMouseSprite();
+                SetPlayerSpriteServerRpc();
             }
         }
 
         [ServerRpc]
-        void SubmitPositionRequestServerRpc(ServerRpcParams rpcParams = default)
+        void SetPlayerSpriteServerRpc()
         {
-            Position.Value = GetRandomPositionOnPlane();
+            SetMouseSprite();
         }
 
-        static Vector3 GetRandomPositionOnPlane()
+        void SetHealth()
         {
-            return new Vector3(Random.Range(-3f, 3f), 1f, Random.Range(-3f, 3f));
+            PlayerScript player = GetComponent<PlayerScript>();
+            Debug.Log(player.playerNumber.ToString());
+            string healthRendererName;
+            if (player.playerNumber == PlayerScript.PlayerNumber.FIRST)
+            {
+                healthRendererName = "PlayerHealth1";
+            }
+            else
+            {
+                healthRendererName = "PlayerHealth2";
+            }
+            GameObject healthRenderer = GameObject.Find(healthRendererName);
+            healthRenderer.GetComponent<HealthRender>().setHealthText(player.playerNumber.ToString(), player.netHealth.Value.ToString());
+        }
+
+        private void SetMouseSprite()
+        {
+            PlayerScript2D playerScript2D = GetComponent<PlayerScript2D>();
+            playerScript2D.playerNumber = PlayerScript.PlayerNumber.SECOND;
+            Sprite mouseSprite = Resources.Load<Sprite>("Sprites/mouse");
+            SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
+            spriteRenderer.sprite = mouseSprite;
+            spriteRenderer.flipX = true;
+            SetHealth();
         }
 
         void Update()
         {
-            //transform.position = Position.Value;
+
         }
     }
 }

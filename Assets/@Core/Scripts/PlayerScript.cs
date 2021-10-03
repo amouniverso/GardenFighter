@@ -1,15 +1,15 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using MLAPI;
+using MLAPI.Messaging;
+using MLAPI.NetworkVariable;
 
-public class PlayerScript : MonoBehaviour
+public class PlayerScript : NetworkBehaviour
 {
     [SerializeField] protected Transform groundCheckTransform;
     [SerializeField] protected LayerMask playerMask;
     [SerializeField] protected Rigidbody bullet;
-    [SerializeField] public int health = 5;
+    //[SerializeField] public int health = 5;
     [SerializeField] public PlayerNumber playerNumber;
     [SerializeField] protected Text gameoverText;
 
@@ -33,11 +33,15 @@ public class PlayerScript : MonoBehaviour
     protected AudioSource deathSound;
     protected Rigidbody rgdbody;
 
+    private GameObject healthRenderer;
+
     public enum PlayerNumber
     {
         FIRST = 1,
         SECOND = 2
     }
+
+    public NetworkVariableInt netHealth = new NetworkVariableInt(5);
 
     // Start is called before the first frame update
     void Start()
@@ -46,13 +50,41 @@ public class PlayerScript : MonoBehaviour
         rgdbody = GetComponent<Rigidbody>();
     }
 
+    private void OnEnable()
+    {
+        netHealth.OnValueChanged += OnHealthChanged;
+    }
+
+    private void OnDisable()
+    {
+        netHealth.OnValueChanged -= OnHealthChanged;
+    }
+
+    void OnHealthChanged(int oldValue, int newValue)
+    {
+        Debug.Log(playerNumber.ToString());
+        string healthRendererName;
+        if (playerNumber == PlayerScript.PlayerNumber.FIRST)
+        {
+            healthRendererName = "PlayerHealth1";
+        }
+        else
+        {
+            healthRendererName = "PlayerHealth2";
+        }
+        GameObject healthRenderer = GameObject.Find(healthRendererName);
+        healthRenderer.GetComponent<HealthRender>().setHealthText(playerNumber.ToString(), netHealth.Value.ToString());
+
+        Debug.LogFormat("{0} has {1} health!", playerNumber, netHealth.Value);
+    }
+
     // Update is called once per frame
     void Update()
     {
-        if (health == 0)
+        if (netHealth.Value == 0)
         {
             AudioSource.PlayClipAtPoint(deathSound.clip, transform.position);
-            gameoverText.text = "Player " + (playerNumber == PlayerNumber.FIRST ? "2" : "1") + " WIN!";
+            //gameoverText.text = "Player " + (playerNumber == PlayerNumber.FIRST ? "2" : "1") + " WIN!";
             Destroy(gameObject);
         }
         if (playerNumber == PlayerNumber.FIRST)

@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class HealthRender : MonoBehaviour
 {
-    [SerializeField] private PlayerScript player;
     private Text healthText;
 
     // Start is called before the first frame update
@@ -14,10 +13,8 @@ public class HealthRender : MonoBehaviour
         healthText = GetComponent<Text>();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void setHealthText(string name, string text)
     {
-        string playerName = player.playerNumber == PlayerScript.PlayerNumber.FIRST ? "Player1" : "Player2";
-        healthText.text = playerName + ": " + player.health;
+        healthText.text = name + ": " + text;
     }
 }
