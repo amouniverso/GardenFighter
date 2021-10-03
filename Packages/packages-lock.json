@@ -1,5 +1,12 @@
 {
   "dependencies": {
+    "com.mlapi.contrib.transport.photon-realtime": {
+      "version": "https://github.com/Unity-Technologies/mlapi-community-contributions.git?path=/Transports/com.mlapi.contrib.transport.photon-realtime",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "e94f42ddb92abdf93e58f7f11c40e8355fa4ac74"
+    },
     "com.unity.2d.animation": {
       "version": "3.2.6",
       "depth": 0,

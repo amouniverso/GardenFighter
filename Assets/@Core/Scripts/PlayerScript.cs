@@ -41,7 +41,7 @@ public class PlayerScript : NetworkBehaviour
         SECOND = 2
     }
 
-    public NetworkVariableInt netHealth = new NetworkVariableInt(5);
+    public NetworkVariableInt netHealth = new NetworkVariableInt(10);
 
     // Start is called before the first frame update
     void Start()

@@ -9,6 +9,7 @@ using MLAPI.NetworkVariable;
 public class MenuManager : MonoBehaviour
 {
     [SerializeField] private GameObject menu;
+
     public void LoadMainScene()
     {
         SceneManager.LoadScene("MainScene");
@@ -29,6 +30,12 @@ public class MenuManager : MonoBehaviour
         Application.Quit();
     }
 
+    public void FullScreen()
+    {
+        // Toggle fullscreen
+        Screen.fullScreen = !Screen.fullScreen;
+    }
+
     public void StartHost()
     {
         NetworkManager.Singleton.StartHost();
@@ -40,4 +47,5 @@ public class MenuManager : MonoBehaviour
         NetworkManager.Singleton.StartClient();
         menu.SetActive(false);
     }
+
 }

@@ -15,6 +15,7 @@ public class HealthRender : MonoBehaviour
 
     public void setHealthText(string name, string text)
     {
-        healthText.text = name + ": " + text;
+        string _name = name == "FIRST" ? "Player1" : "Player2";
+        healthText.text = _name + ": " + text;
     }
 }

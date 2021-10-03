@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2860086987013775450}
   - component: {fileID: 2860086987013775449}
   - component: {fileID: -5688316075995732524}
+  - component: {fileID: 2134950538104113152}
   m_Layer: 5
   m_Name: PlayerHealth
   m_TagString: Untagged
@@ -59,7 +60,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -79,7 +80,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Health
+  m_Text: Waiting...
 --- !u!114 &-5688316075995732524
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -92,4 +93,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bd22107091edbb4aa4d305d9baf806c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 3576525679402983313, guid: 6bb808cbc5fbbc0429739cb0e85b3909, type: 3}
+--- !u!114 &2134950538104113152
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2860086987013775455}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfabb0440166ab443bba8876756fdfa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 4, y: -4}
+  m_UseGraphicAlpha: 1

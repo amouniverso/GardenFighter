@@ -144,7 +144,7 @@ MonoBehaviour:
   playerNumber: 1
   gameoverText: {fileID: 0}
   netHealth:
-    m_InternalValue: 5
+    m_InternalValue: 10
 --- !u!1001 &7377094960868661949
 PrefabInstance:
   m_ObjectHideFlags: 0
