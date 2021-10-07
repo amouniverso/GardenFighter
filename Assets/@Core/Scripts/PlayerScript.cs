@@ -78,7 +78,6 @@ public class PlayerScript : NetworkBehaviour
         Debug.LogFormat("{0} has {1} health!", playerNumber, netHealth.Value);
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (netHealth.Value == 0)

@@ -23,9 +23,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 576753124532843573}
-  m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0.001, y: 1.045, z: 1.489}
-  m_LocalScale: {x: 0.99999976, y: 1, z: 0.99999976}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3545311199220070559}
   m_RootOrder: 1
@@ -91,7 +91,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8142606447325488834}
-  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -99,7 +99,7 @@ Transform:
   - {fileID: 107851118113496088}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &324545310386073689
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -107,7 +107,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8142606447325488834}
-  m_Mesh: {fileID: 4300000, guid: 33bee4529afa2d740bfcc71a4c9f1f2c, type: 3}
+  m_Mesh: {fileID: -2432090755550338912, guid: 249177ce2cae8504293c04a184baf13f, type: 3}
 --- !u!23 &3009289117063597093
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -127,7 +127,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: b83d3bf75db8f704fb67e55cf64a537f, type: 2}
+  - {fileID: -8469494145858465668, guid: c5cbe20ba894c4545be5ee71804951fd, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -182,10 +182,10 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 55
   bullet: {fileID: 1260285852613895857, guid: debbcd017650f9a47b5eca637f0e6475, type: 3}
-  health: 10
   playerNumber: 1
   gameoverText: {fileID: 0}
-  healthRenderer: {fileID: -5688316075995732524, guid: 9f179463631daf04fab076ab8efcccfe, type: 3}
+  netHealth:
+    m_InternalValue: 10
 --- !u!65 &6475535168600794112
 BoxCollider:
   m_ObjectHideFlags: 0
