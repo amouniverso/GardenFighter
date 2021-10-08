@@ -126,13 +126,13 @@ public class PlayerScript : NetworkBehaviour
 
     private void FixedUpdate()
     {
-        rgdbody.velocity = new Vector3(transform.forward.x * verticalInput * VELOCITY, rgdbody.velocity.y, transform.forward.z * verticalInput * VELOCITY);
+        rgdbody.velocity = new Vector3(transform.right.x * verticalInput * VELOCITY, rgdbody.velocity.y, transform.right.z * verticalInput * VELOCITY);
         transform.Rotate(0, horizontalInput * ROTATION, 0);
 
         if (fireKeyPressed)
         {
             Rigidbody b = Instantiate(bullet, transform.Find("BulletStartPosition").position, transform.rotation);
-            b.velocity = transform.forward * BULLET_SPEED;
+            b.velocity = transform.right * BULLET_SPEED;
             fireKeyPressed = false;
         }
 
