@@ -9,7 +9,6 @@ public class PlayerScript : MonoBehaviour
     [SerializeField] protected Rigidbody bullet;
     [SerializeField] public int health;
     [SerializeField] public PlayerNumber playerNumber;
-    [SerializeField] protected Text gameoverText;
 
     protected bool jumpKeyPressed;
     protected bool fireKeyPressed;
@@ -58,7 +57,7 @@ public class PlayerScript : MonoBehaviour
             AudioSource.PlayClipAtPoint(deathSound.clip, transform.position);
             Vector2 randomPosition = Random.insideUnitCircle * 2;
             gameObject.transform.position = new Vector3(randomPosition.x, 7, randomPosition.y);
-            health = 5;
+            health = 1;
         }
         if (playerNumber == PlayerNumber.FIRST)
         {
