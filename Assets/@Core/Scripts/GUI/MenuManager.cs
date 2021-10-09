@@ -8,8 +8,23 @@ using MLAPI.NetworkVariable;
 
 public class MenuManager : MonoBehaviour
 {
-    [SerializeField] private GameObject menu;
+    [SerializeField] private GameObject mainMenu;
+    [SerializeField] private GameObject pauseMenu;
 
+    private bool gamePaused = false;
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape) && !gamePaused && !mainMenu.activeSelf)
+        {
+            pauseMenu.SetActive(!pauseMenu.activeSelf);
+            gamePaused = true;
+        }
+        if (Input.GetKeyUp(KeyCode.Escape))
+        {
+            gamePaused = false;
+        }
+    }
     public void LoadMainScene()
     {
         SceneManager.LoadScene("MainScene");
@@ -39,13 +54,13 @@ public class MenuManager : MonoBehaviour
     public void StartHost()
     {
         NetworkManager.Singleton.StartHost();
-        menu.SetActive(false);
+        mainMenu.SetActive(false);
     }
 
     public void StartClient()
     {
         NetworkManager.Singleton.StartClient();
-        menu.SetActive(false);
+        mainMenu.SetActive(false);
     }
 
 }

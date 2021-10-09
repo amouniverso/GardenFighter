@@ -7,7 +7,7 @@ public class PlayerScript : MonoBehaviour
     [SerializeField] protected Transform groundCheckTransform;
     [SerializeField] protected LayerMask playerMask;
     [SerializeField] protected Rigidbody bullet;
-    [SerializeField] public int health = 5;
+    [SerializeField] public int health;
     [SerializeField] public PlayerNumber playerNumber;
     [SerializeField] protected Text gameoverText;
 
@@ -49,9 +49,6 @@ public class PlayerScript : MonoBehaviour
     //IEnumerator zeroHealth()
     //{
 
-    /// <summary>
-    /// 
-    /// </summary>
 
     void Update()
     {
@@ -59,16 +56,13 @@ public class PlayerScript : MonoBehaviour
         {
             health = 0;
             AudioSource.PlayClipAtPoint(deathSound.clip, transform.position);
-            //gameoverText.text = "Player " + (playerNumber == PlayerNumber.FIRST ? "2" : "1") + " WIN!";
-            //gameObject.SetActive(false);
             Vector2 randomPosition = Random.insideUnitCircle * 2;
             gameObject.transform.position = new Vector3(randomPosition.x, 7, randomPosition.y);
             health = 5;
-            //Destroy(gameObject);
         }
         if (playerNumber == PlayerNumber.FIRST)
         {
-            jumpKey = Input.GetKeyDown(KeyCode.Space);
+            jumpKey = Input.GetKeyDown(KeyCode.LeftControl);
             fireKey = Input.GetKeyDown(KeyCode.LeftShift);
 
             leftKeyDown = Input.GetKeyDown(KeyCode.A);

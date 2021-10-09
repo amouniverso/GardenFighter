@@ -180,7 +180,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 55
   bullet: {fileID: 1260285852613895857, guid: debbcd017650f9a47b5eca637f0e6475, type: 3}
-  health: 5
+  health: 1
   playerNumber: 1
   gameoverText: {fileID: 0}
 --- !u!82 &6794311573776844870
