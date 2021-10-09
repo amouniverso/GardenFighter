@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 576753124532843573}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.44, y: 0, z: 0}
+  m_LocalPosition: {x: 0.99, y: 0.08, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3545311199220070559}
@@ -54,7 +54,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6094664066127743913}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.719, z: 0}
+  m_LocalPosition: {x: 0, y: -0.752, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3545311199220070559}
@@ -74,8 +74,6 @@ GameObject:
   - component: {fileID: 2906770069897562175}
   - component: {fileID: 3576525679402983313}
   - component: {fileID: 6794311573776844870}
-  - component: {fileID: -7980522473392722018}
-  - component: {fileID: -6418916180136064054}
   - component: {fileID: 782353973344721477}
   m_Layer: 6
   m_Name: Player
@@ -93,7 +91,7 @@ Transform:
   m_GameObject: {fileID: 8142606447325488834}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.7, y: 1.7, z: 1.7}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 3252587558374585918}
   - {fileID: 107851118113496088}
@@ -182,10 +180,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 55
   bullet: {fileID: 1260285852613895857, guid: debbcd017650f9a47b5eca637f0e6475, type: 3}
+  health: 5
   playerNumber: 1
   gameoverText: {fileID: 0}
-  netHealth:
-    m_InternalValue: 10
 --- !u!82 &6794311573776844870
 AudioSource:
   m_ObjectHideFlags: 0
@@ -282,35 +279,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &-7980522473392722018
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8142606447325488834}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  NetworkInstanceId: 0
-  PrefabHash: 1897319656204293034
-  PrefabHashGenerator: Player
-  AlwaysReplicateAsRoot: 0
-  DontDestroyWithOwner: 0
---- !u!114 &-6418916180136064054
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8142606447325488834}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c49cd3079208b554781005db1c1aba95, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!65 &782353973344721477
 BoxCollider:
   m_ObjectHideFlags: 0

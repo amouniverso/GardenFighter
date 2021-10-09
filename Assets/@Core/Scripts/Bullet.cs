@@ -21,9 +21,9 @@ public class Bullet : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            if (!NetworkManager.Singleton.IsServer) return;
+            //if (!NetworkManager.Singleton.IsServer) return;
             PlayerScript player = other.GetComponent<PlayerScript>();
-            player.netHealth.Value--;
+            player.health--;
         }
         Destroy(gameObject);
     }

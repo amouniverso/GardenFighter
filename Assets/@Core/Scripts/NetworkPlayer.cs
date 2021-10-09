@@ -37,7 +37,7 @@ namespace HelloWorld
                 healthRendererName = "PlayerHealth2";
             }
             GameObject healthRenderer = GameObject.Find(healthRendererName);
-            healthRenderer.GetComponent<HealthRender>().setHealthText(player.playerNumber.ToString(), player.netHealth.Value.ToString());
+            //healthRenderer.GetComponent<HealthRender>().setHealthText(player.playerNumber.ToString(), player.netHealth.Value.ToString());
         }
 
         private void SetMouseSprite()
