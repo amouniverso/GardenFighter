@@ -1076,7 +1076,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &370505086
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1817,7 +1817,7 @@ MonoBehaviour:
   m_Priority: 15
   m_StandbyUpdate: 2
   m_LookAt: {fileID: 812637735}
-  m_Follow: {fileID: 0}
+  m_Follow: {fileID: 812637735}
   m_Lens:
     FieldOfView: 60
     OrthographicSize: 5
@@ -1840,8 +1840,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 935699063}
-  m_LocalRotation: {x: -0.14296526, y: -0.058354415, z: 0.043421898, w: 0.98705125}
-  m_LocalPosition: {x: 1.3023067, y: -1.4969084, z: 0.9000905}
+  m_LocalRotation: {x: -0.19273067, y: 0.017967086, z: -0.012018673, w: 0.9810136}
+  m_LocalPosition: {x: 0.38999996, y: -1.8500001, z: 1.98}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1185095829}
@@ -1988,8 +1988,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa7155796051b734daa718462081dc5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_BindingMode: 1
-  m_FollowOffset: {x: 0, y: 0, z: -10}
+  m_BindingMode: 4
+  m_FollowOffset: {x: 0.39710206, y: 2.4676623, z: 4.391964}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
@@ -2516,7 +2516,7 @@ GameObject:
   - component: {fileID: 1761037413}
   - component: {fileID: 1761037412}
   m_Layer: 0
-  m_Name: CM vcam1 (1)
+  m_Name: CM vcam2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3301,7 +3301,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &2124020675
 MonoBehaviour:
   m_ObjectHideFlags: 0
