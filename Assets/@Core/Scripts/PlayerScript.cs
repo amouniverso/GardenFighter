@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using UnityEngine.InputSystem;
 
 public class PlayerScript : MonoBehaviour
 {
@@ -32,6 +33,24 @@ public class PlayerScript : MonoBehaviour
 
     private GameObject healthRenderer;
 
+    public void Fire(InputAction.CallbackContext context)
+    {
+        Debug.Log("Fire!");
+        fireKeyPressed = true;
+    }
+
+    public void Move(InputAction.CallbackContext context)
+    {
+        Vector2 moveDirection = context.ReadValue<Vector2>();
+        horizontalInput = moveDirection.x;
+        verticalInput = moveDirection.y;
+    }
+
+    public void Jump(InputAction.CallbackContext context)
+    {
+        jumpKeyPressed = true;
+    }
+
     public enum PlayerNumber
     {
         FIRST = 1,
@@ -48,7 +67,6 @@ public class PlayerScript : MonoBehaviour
     //IEnumerator zeroHealth()
     //{
 
-
     void Update()
     {
         if (health <= 0)
@@ -61,39 +79,39 @@ public class PlayerScript : MonoBehaviour
         }
         if (playerNumber == PlayerNumber.FIRST)
         {
-            jumpKey = Input.GetKeyDown(KeyCode.LeftControl);
-            fireKey = Input.GetKeyDown(KeyCode.LeftShift);
+            //jumpKey = Input.GetKeyDown(KeyCode.LeftControl);
+            //fireKey = Input.GetKeyDown(KeyCode.LeftShift);
 
-            leftKeyDown = Input.GetKeyDown(KeyCode.A);
-            leftKeyUp = Input.GetKeyUp(KeyCode.A);
-            rightKeyDown = Input.GetKeyDown(KeyCode.D);
-            rightKeyUp = Input.GetKeyUp(KeyCode.D);
+            //leftKeyDown = Input.GetKeyDown(KeyCode.A);
+            //leftKeyUp = Input.GetKeyUp(KeyCode.A);
+            //rightKeyDown = Input.GetKeyDown(KeyCode.D);
+            //rightKeyUp = Input.GetKeyUp(KeyCode.D);
 
-            upKeyDown = Input.GetKeyDown(KeyCode.S);
-            upKeyUp = Input.GetKeyUp(KeyCode.S);
-            downKeyDown = Input.GetKeyDown(KeyCode.W);
-            downKeyUp = Input.GetKeyUp(KeyCode.W);
+            //upKeyDown = Input.GetKeyDown(KeyCode.S);
+            //upKeyUp = Input.GetKeyUp(KeyCode.S);
+            //downKeyDown = Input.GetKeyDown(KeyCode.W);
+            //downKeyUp = Input.GetKeyUp(KeyCode.W);
         }
         else if(playerNumber == PlayerNumber.SECOND)
         {
-            jumpKey = Input.GetKeyDown(KeyCode.RightControl);
-            fireKey = Input.GetKeyDown(KeyCode.RightShift);
+            //jumpKey = Input.GetKeyDown(KeyCode.RightControl);
+            //fireKey = Input.GetKeyDown(KeyCode.RightShift);
 
-            leftKeyDown = Input.GetKeyDown(KeyCode.LeftArrow);
-            leftKeyUp = Input.GetKeyUp(KeyCode.LeftArrow);
-            rightKeyDown = Input.GetKeyDown(KeyCode.RightArrow);
-            rightKeyUp = Input.GetKeyUp(KeyCode.RightArrow);
+            //leftKeyDown = Input.GetKeyDown(KeyCode.LeftArrow);
+            //leftKeyUp = Input.GetKeyUp(KeyCode.LeftArrow);
+            //rightKeyDown = Input.GetKeyDown(KeyCode.RightArrow);
+            //rightKeyUp = Input.GetKeyUp(KeyCode.RightArrow);
 
-            upKeyDown = Input.GetKeyDown(KeyCode.DownArrow);
-            upKeyUp = Input.GetKeyUp(KeyCode.DownArrow);
-            downKeyDown = Input.GetKeyDown(KeyCode.UpArrow);
-            downKeyUp = Input.GetKeyUp(KeyCode.UpArrow);
+            //upKeyDown = Input.GetKeyDown(KeyCode.DownArrow);
+            //upKeyUp = Input.GetKeyUp(KeyCode.DownArrow);
+            //downKeyDown = Input.GetKeyDown(KeyCode.UpArrow);
+            //downKeyUp = Input.GetKeyUp(KeyCode.UpArrow);
         }
 
-        if (jumpKey) jumpKeyPressed = true; 
-        if (fireKey) fireKeyPressed = true;
-        horizontalInput = leftKeyDown ? -1.0f : rightKeyDown ? 1.0f : (rightKeyUp || leftKeyUp) ? 0f : horizontalInput;
-        verticalInput = upKeyDown ? -1.0f : downKeyDown ? 1.0f : (downKeyUp || upKeyUp) ? 0f : verticalInput;
+        //if (jumpKey) jumpKeyPressed = true; 
+        //if (fireKey) fireKeyPressed = true;
+        //horizontalInput = leftKeyDown ? -1.0f : rightKeyDown ? 1.0f : (rightKeyUp || leftKeyUp) ? 0f : horizontalInput;
+        //verticalInput = upKeyDown ? -1.0f : downKeyDown ? 1.0f : (downKeyUp || upKeyUp) ? 0f : verticalInput;
 
     }
 
