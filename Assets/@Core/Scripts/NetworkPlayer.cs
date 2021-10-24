@@ -42,13 +42,13 @@ namespace HelloWorld
 
         private void SetMouseSprite()
         {
-            PlayerScript2D playerScript2D = GetComponent<PlayerScript2D>();
-            playerScript2D.playerNumber = PlayerScript.PlayerNumber.SECOND;
-            Sprite mouseSprite = Resources.Load<Sprite>("Sprites/mouse");
-            SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
-            spriteRenderer.sprite = mouseSprite;
-            spriteRenderer.flipX = true;
-            SetHealth();
+            //PlayerScript2D playerScript2D = GetComponent<PlayerScript2D>();
+            //playerScript2D.playerNumber = PlayerScript.PlayerNumber.SECOND;
+            //Sprite mouseSprite = Resources.Load<Sprite>("Sprites/mouse");
+            //SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
+            //spriteRenderer.sprite = mouseSprite;
+            //spriteRenderer.flipX = true;
+            //SetHealth();
         }
 
         void Update()

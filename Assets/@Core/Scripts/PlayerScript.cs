@@ -1,54 +1,69 @@
 using UnityEngine;
-using UnityEngine.UI;
-using System.Collections;
 using UnityEngine.InputSystem;
 
 public class PlayerScript : MonoBehaviour
 {
-    [SerializeField] protected Transform groundCheckTransform;
-    [SerializeField] protected LayerMask playerMask;
-    [SerializeField] protected Rigidbody bullet;
+    //[SerializeField] Transform groundCheckTransform;
+    //[SerializeField] LayerMask playerMask;
+    [SerializeField] Rigidbody bullet;
     [SerializeField] public int health;
     [SerializeField] public PlayerNumber playerNumber;
 
-    protected bool jumpKeyPressed;
-    protected bool fireKeyPressed;
-    protected float horizontalInput;
-    protected float verticalInput;
+    bool jumpKeyPressed;
+    bool fireKeyPressed;
 
-    private bool jumpKey;
-    private bool fireKey;
-    private bool leftKeyDown, leftKeyUp, 
-                 rightKeyDown, rightKeyUp,
-                 upKeyDown, upKeyUp,
-                 downKeyDown, downKeyUp;
+    private bool groundedPlayer;
+    private Vector3 playerVelocity;
+    private Vector3 playerMoveInput;
+    private Vector3 playerLookInput;
 
-    protected const int VELOCITY = 4;
-    protected const int ROTATION = 4;
-    protected const int JUMP_POWER = 8;
-    protected const int BULLET_SPEED = 5;
+    private const float PLAYER_SPEED = 4.0f;
+    private const float ROTATION = 4.0f;
+    private const float JUMP_POWER = 8.0f;
+    private const float BULLET_SPEED = 5.0f;
+    private const float JUMP_HEIGHT = 1.0f;
+    private const float GRAVITY_VALUE = -9.81f;
 
-    protected AudioSource deathSound;
-    protected Rigidbody rgdbody;
 
-    private GameObject healthRenderer;
+    private AudioSource deathSound;
+    //private Rigidbody rgdbody;
+    //private GameObject healthRenderer;
+    private CharacterController chController;
 
     public void Fire(InputAction.CallbackContext context)
     {
+        if (!context.performed) return;
         Debug.Log("Fire!");
         fireKeyPressed = true;
     }
 
     public void Move(InputAction.CallbackContext context)
     {
+        if (context.started) return;
+        Debug.Log("Move!");
         Vector2 moveDirection = context.ReadValue<Vector2>();
-        horizontalInput = moveDirection.x;
-        verticalInput = moveDirection.y;
+        playerMoveInput = new Vector3(-moveDirection.x, 0, -moveDirection.y);
+    }
+
+    public void Look(InputAction.CallbackContext context)
+    {
+        if (context.started) return;
+        Debug.Log("Look!");
+        Vector2 lookDirection = context.ReadValue<Vector2>();
+        playerLookInput = new Vector3(-lookDirection.x, 0, -lookDirection.y);
     }
 
     public void Jump(InputAction.CallbackContext context)
     {
-        jumpKeyPressed = true;
+        if (context.performed)
+        {
+            Debug.Log("Jump pressed!");
+            jumpKeyPressed = true;
+        } else if (context.canceled)
+        {
+            Debug.Log("Jump released!");
+            jumpKeyPressed = false;
+        }       
     }
 
     public enum PlayerNumber
@@ -57,17 +72,39 @@ public class PlayerScript : MonoBehaviour
         SECOND = 2
     }
 
-    // Start is called before the first frame update
     void Start()
     {
+        chController = GetComponent<CharacterController>();
         deathSound = GetComponent<AudioSource>();
-        rgdbody = GetComponent<Rigidbody>();
+        //rgdbody = GetComponent<Rigidbody>();
     }
 
-    //IEnumerator zeroHealth()
-    //{
+    void playerMoveHandler()
+    {
+        groundedPlayer = chController.isGrounded;
+        if (groundedPlayer && playerVelocity.y < 0)
+        {
+            playerVelocity.y = 0f;
+        }
 
-    void Update()
+        chController.Move(playerMoveInput * Time.deltaTime * PLAYER_SPEED);
+
+        //Player look direction
+        if (playerLookInput != Vector3.zero)
+        {
+            gameObject.transform.right = playerLookInput;
+        }
+
+        if (jumpKeyPressed && groundedPlayer)
+        {
+            playerVelocity.y += Mathf.Sqrt(JUMP_HEIGHT * -3.0f * GRAVITY_VALUE);
+        }
+
+        playerVelocity.y += GRAVITY_VALUE * Time.deltaTime;
+        chController.Move(playerVelocity * Time.deltaTime); // y-axis move
+    }
+
+    void playerDeathHandler()
     {
         if (health <= 0)
         {
@@ -77,66 +114,38 @@ public class PlayerScript : MonoBehaviour
             gameObject.transform.position = new Vector3(randomPosition.x, 7, randomPosition.y);
             health = 1;
         }
-        if (playerNumber == PlayerNumber.FIRST)
-        {
-            //jumpKey = Input.GetKeyDown(KeyCode.LeftControl);
-            //fireKey = Input.GetKeyDown(KeyCode.LeftShift);
-
-            //leftKeyDown = Input.GetKeyDown(KeyCode.A);
-            //leftKeyUp = Input.GetKeyUp(KeyCode.A);
-            //rightKeyDown = Input.GetKeyDown(KeyCode.D);
-            //rightKeyUp = Input.GetKeyUp(KeyCode.D);
-
-            //upKeyDown = Input.GetKeyDown(KeyCode.S);
-            //upKeyUp = Input.GetKeyUp(KeyCode.S);
-            //downKeyDown = Input.GetKeyDown(KeyCode.W);
-            //downKeyUp = Input.GetKeyUp(KeyCode.W);
-        }
-        else if(playerNumber == PlayerNumber.SECOND)
-        {
-            //jumpKey = Input.GetKeyDown(KeyCode.RightControl);
-            //fireKey = Input.GetKeyDown(KeyCode.RightShift);
-
-            //leftKeyDown = Input.GetKeyDown(KeyCode.LeftArrow);
-            //leftKeyUp = Input.GetKeyUp(KeyCode.LeftArrow);
-            //rightKeyDown = Input.GetKeyDown(KeyCode.RightArrow);
-            //rightKeyUp = Input.GetKeyUp(KeyCode.RightArrow);
-
-            //upKeyDown = Input.GetKeyDown(KeyCode.DownArrow);
-            //upKeyUp = Input.GetKeyUp(KeyCode.DownArrow);
-            //downKeyDown = Input.GetKeyDown(KeyCode.UpArrow);
-            //downKeyUp = Input.GetKeyUp(KeyCode.UpArrow);
-        }
-
-        //if (jumpKey) jumpKeyPressed = true; 
-        //if (fireKey) fireKeyPressed = true;
-        //horizontalInput = leftKeyDown ? -1.0f : rightKeyDown ? 1.0f : (rightKeyUp || leftKeyUp) ? 0f : horizontalInput;
-        //verticalInput = upKeyDown ? -1.0f : downKeyDown ? 1.0f : (downKeyUp || upKeyUp) ? 0f : verticalInput;
-
     }
 
-    private void FixedUpdate()
+    void playerFireHandler()
     {
-        rgdbody.velocity = new Vector3(transform.right.x * verticalInput * VELOCITY, rgdbody.velocity.y, transform.right.z * verticalInput * VELOCITY);
-        transform.Rotate(0, horizontalInput * ROTATION, 0);
-
         if (fireKeyPressed)
         {
             Rigidbody b = Instantiate(bullet, transform.Find("BulletStartPosition").position, transform.rotation);
             b.velocity = transform.right * BULLET_SPEED;
             fireKeyPressed = false;
         }
+    }
 
-        if (Physics.OverlapSphere(groundCheckTransform.position, 0.1f, playerMask).Length == 0)
-        {
-            return;
-        }
+    void Update()
+    {
+        playerDeathHandler();
+        playerMoveHandler();
+    }
 
-        if (jumpKeyPressed)
-        {
-            rgdbody.AddForce(Vector3.up * JUMP_POWER, ForceMode.VelocityChange);
-            jumpKeyPressed = false;
-        }
+    private void FixedUpdate()
+    {
+        playerFireHandler();
+
+        //if (Physics.OverlapSphere(groundCheckTransform.position, 0.1f, playerMask).Length == 0)
+        //{
+        //    return;
+        //}
+
+        //if (jumpKeyPressed)
+        //{
+        //    rgdbody.AddForce(Vector3.up * JUMP_POWER, ForceMode.VelocityChange);
+        //    jumpKeyPressed = false;
+       // }
         
     }
 }
