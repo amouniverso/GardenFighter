@@ -15,11 +15,9 @@ public class PlayerScript : MonoBehaviour
     private bool groundedPlayer;
     private Vector3 playerVelocity;
     private Vector3 playerMoveInput;
-    private Vector3 playerLookInput;
+    private Vector3 playerLookDirection;
 
     private const float PLAYER_SPEED = 4.0f;
-    private const float ROTATION = 4.0f;
-    private const float JUMP_POWER = 8.0f;
     private const float BULLET_SPEED = 5.0f;
     private const float JUMP_HEIGHT = 1.0f;
     private const float GRAVITY_VALUE = -9.81f;
@@ -29,6 +27,7 @@ public class PlayerScript : MonoBehaviour
     //private Rigidbody rgdbody;
     //private GameObject healthRenderer;
     private CharacterController chController;
+    private Camera mainCamera;
 
     public void Fire(InputAction.CallbackContext context)
     {
@@ -41,16 +40,18 @@ public class PlayerScript : MonoBehaviour
     {
         if (context.started) return;
         Debug.Log("Move!");
-        Vector2 moveDirection = context.ReadValue<Vector2>();
-        playerMoveInput = new Vector3(-moveDirection.x, 0, -moveDirection.y);
+        Vector2 moveInput = context.ReadValue<Vector2>();
+        playerMoveInput = mainCamera.transform.forward * moveInput.y + mainCamera.transform.right * moveInput.x;
+        playerMoveInput.y = 0f;
     }
 
     public void Look(InputAction.CallbackContext context)
     {
         if (context.started) return;
         Debug.Log("Look!");
-        Vector2 lookDirection = context.ReadValue<Vector2>();
-        playerLookInput = new Vector3(-lookDirection.x, 0, -lookDirection.y);
+        Vector2 lookInput = context.ReadValue<Vector2>();
+        playerLookDirection = mainCamera.transform.forward * lookInput.y + mainCamera.transform.right * lookInput.x;
+        playerLookDirection.y = 0f;
     }
 
     public void Jump(InputAction.CallbackContext context)
@@ -76,6 +77,7 @@ public class PlayerScript : MonoBehaviour
     {
         chController = GetComponent<CharacterController>();
         deathSound = GetComponent<AudioSource>();
+        mainCamera = Camera.main;
         //rgdbody = GetComponent<Rigidbody>();
     }
 
@@ -90,9 +92,9 @@ public class PlayerScript : MonoBehaviour
         chController.Move(playerMoveInput * Time.deltaTime * PLAYER_SPEED);
 
         //Player look direction
-        if (playerLookInput != Vector3.zero)
+        if (playerLookDirection != Vector3.zero)
         {
-            gameObject.transform.right = playerLookInput;
+            gameObject.transform.right = playerLookDirection;
         }
 
         if (jumpKeyPressed && groundedPlayer)
