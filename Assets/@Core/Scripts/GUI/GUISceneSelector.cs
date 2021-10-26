@@ -7,18 +7,14 @@ public class GUISceneSelector : MonoBehaviour
 {
     private void OnGUI()
     {
-        GUILayout.BeginArea(new Rect(10, 10, 300, 300));
-        if (GUILayout.Button("ForestScene"))
+        GUILayout.BeginArea(new Rect(10, 10, 500, 500));
+        if (GUILayout.Button("RiverCastle", GUILayout.Width(100), GUILayout.Height(100)))
         {
-            SceneManager.LoadScene("ForestScene");
+            SceneManager.LoadScene("RiverCastle");
         }
-        if (GUILayout.Button("LakehouseScene"))
+        if (GUILayout.Button("LakeHouse", GUILayout.Width(100), GUILayout.Height(100)))
         {
-            SceneManager.LoadScene("Lakehouse");
-        }
-        if (GUILayout.Button("ProBuilderScene"))
-        {
-            SceneManager.LoadScene("ProBuilderDemo");
+            SceneManager.LoadScene("LakeHouse");
         }
         GUILayout.EndArea();
     }

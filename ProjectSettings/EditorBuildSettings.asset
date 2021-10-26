@@ -11,13 +11,16 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/@Core/Scenes/Deprecated/NetLobby.unity
     guid: c72bca33f722b824b827adda9d45d34f
-  - enabled: 1
+  - enabled: 0
     path: Assets/@Core/Scenes/ForestScene.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 1
-    path: Assets/@Core/Scenes/Lakehouse.unity
-    guid: a90c0a79abc2a534b84134d63d8e68ee
+    path: Assets/@Core/Scenes/RiverCastle.unity
+    guid: 916bdea2f3769094da1b883165ffd691
   - enabled: 1
+    path: Assets/@Core/Scenes/LakeHouse.unity
+    guid: a90c0a79abc2a534b84134d63d8e68ee
+  - enabled: 0
     path: Assets/@Core/Scenes/ProBuilderDemo.unity
     guid: 9613c71ef99a2204fb91d932f1115c23
   m_configObjects: {}
