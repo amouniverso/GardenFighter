@@ -15,6 +15,6 @@ public class CharacterLoader : MonoBehaviour
         int selectedCharacter = PlayerPrefs.GetInt("selectedCharacter");
         GameObject player = Instantiate(charactersPrefabs[selectedCharacter], spawnPoint.position, Quaternion.Euler(0, 180, 0));
         cinemachineCam.Follow = player.transform;
-        cinemachineCam.LookAt = player.transform;
+        //cinemachineCam.LookAt = player.transform;
     }
 }
