@@ -373,7 +373,7 @@ MonoBehaviour:
     m_ActionId: ac5589e8-614f-47ac-8bdb-bac70e7a9665
     m_ActionName: Player/Jump[/Mouse/leftButton,/Keyboard/e]
   m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: Keyboard&Mouse
+  m_DefaultControlScheme: 
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}

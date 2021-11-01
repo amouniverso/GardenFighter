@@ -9,12 +9,12 @@ public class CharacterLoader : MonoBehaviour
     [SerializeField] private Transform spawnPoint;
     [SerializeField] private CinemachineVirtualCamera cinemachineCam;
 
-    // Start is called before the first frame update
     void Start()
     {
         int selectedCharacter = PlayerPrefs.GetInt("selectedCharacter");
-        GameObject player = Instantiate(charactersPrefabs[selectedCharacter], spawnPoint.position, Quaternion.Euler(0, 180, 0));
-        cinemachineCam.Follow = player.transform;
+        GameObject player1 = Instantiate(charactersPrefabs[selectedCharacter], spawnPoint.position, Quaternion.Euler(0, 180, 0));
+        GameObject player2 = Instantiate(charactersPrefabs[selectedCharacter - 1], spawnPoint.position, Quaternion.Euler(0, 180, 0));
+        //cinemachineCam.Follow = player.transform;
         //cinemachineCam.LookAt = player.transform;
     }
 }
