@@ -11,6 +11,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ManPlayerModel
       objectReference: {fileID: 0}
+    - target: {fileID: 8426254965254899493, guid: 7fa337bdc19719048baaa9b3f797756e, type: 3}
+      propertyPath: m_DefaultControlScheme
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 9044438931645397694, guid: 7fa337bdc19719048baaa9b3f797756e, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -57,7 +61,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 1368261859489958503, guid: 7fa337bdc19719048baaa9b3f797756e, type: 3}
-    - {fileID: 8426254965254899493, guid: 7fa337bdc19719048baaa9b3f797756e, type: 3}
     - {fileID: 2161351132100975556, guid: 7fa337bdc19719048baaa9b3f797756e, type: 3}
     - {fileID: 6087235096079373224, guid: 7fa337bdc19719048baaa9b3f797756e, type: 3}
+    - {fileID: 8426254965254899493, guid: 7fa337bdc19719048baaa9b3f797756e, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 7fa337bdc19719048baaa9b3f797756e, type: 3}

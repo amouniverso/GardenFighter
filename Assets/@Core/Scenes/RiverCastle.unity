@@ -1572,7 +1572,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1092944556
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1726,7 +1726,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1181931005}
   m_LocalRotation: {x: -0.13555658, y: 0.5682745, z: -0.38614684, w: 0.7138482}
-  m_LocalPosition: {x: -9.624289, y: 1.8197155, z: 3.9314094}
+  m_LocalPosition: {x: -11.789999, y: 2.7399995, z: 2.8699985}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2136595185}
@@ -2041,7 +2041,7 @@ MonoBehaviour:
   - {fileID: 5649911144134915887, guid: 01648b5480fcaa34bbfc5fc6cb2595b5, type: 3}
   - {fileID: 4447143990058427619, guid: 7fa337bdc19719048baaa9b3f797756e, type: 3}
   spawnPoint: {fileID: 1365013984}
-  cinemachineCam: {fileID: 1181931006}
+  cinemachineGroup: {fileID: 1422004280}
 --- !u!4 &1420789464
 Transform:
   m_ObjectHideFlags: 0
@@ -2089,13 +2089,7 @@ MonoBehaviour:
   m_PositionMode: 0
   m_RotationMode: 0
   m_UpdateMethod: 2
-  m_Targets:
-  - target: {fileID: 0}
-    weight: 1
-    radius: 0
-  - target: {fileID: 0}
-    weight: 1
-    radius: 0
+  m_Targets: []
 --- !u!4 &1422004281
 Transform:
   m_ObjectHideFlags: 0
@@ -3034,7 +3028,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 4
-  m_FollowOffset: {x: 5.273981, y: 3.39, z: 1.1390033}
+  m_FollowOffset: {x: 7.442111, y: 4.791084, z: 1.1396508}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1

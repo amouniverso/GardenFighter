@@ -1,13 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class CharacterSelector : MonoBehaviour
 {
     [SerializeField] private GameObject[] characters;
+
     private int selectedCharacter = 0;
 
+    public int getSelectedCharacter()
+    {
+        return selectedCharacter;
+    }
     public void NextCharacter()
     {
         characters[selectedCharacter].SetActive(false);
@@ -28,11 +32,5 @@ public class CharacterSelector : MonoBehaviour
             selectedCharacter = characters.Length - 1;
         }
         characters[selectedCharacter].SetActive(true);
-    }
-
-    public void StartGame()
-    {
-        PlayerPrefs.SetInt("selectedCharacter", selectedCharacter);
-        SceneManager.LoadScene("RiverCastle");
     }
 }
