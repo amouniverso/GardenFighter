@@ -1,13 +1,13 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerScript : MonoBehaviour
+public class Player : MonoBehaviour
 {
-    //[SerializeField] Transform groundCheckTransform;
-    //[SerializeField] LayerMask playerMask;
     [SerializeField] Rigidbody bullet;
     [SerializeField] public int health;
     [SerializeField] public PlayerNumber playerNumber;
+    [SerializeField] private AudioSource jumpSound;
+    [SerializeField] private AudioSource deathSound;
 
     bool jumpKeyPressed;
     bool fireKeyPressed;
@@ -22,10 +22,6 @@ public class PlayerScript : MonoBehaviour
     private const float JUMP_HEIGHT = 1.0f;
     private const float GRAVITY_VALUE = -9.81f;
 
-
-    private AudioSource deathSound;
-    //private Rigidbody rgdbody;
-    //private GameObject healthRenderer;
     private CharacterController chController;
     private Camera mainCamera;
 
@@ -78,7 +74,6 @@ public class PlayerScript : MonoBehaviour
         chController = GetComponent<CharacterController>();
         deathSound = GetComponent<AudioSource>();
         mainCamera = Camera.main;
-        //rgdbody = GetComponent<Rigidbody>();
     }
 
     void playerMoveHandler()
@@ -100,6 +95,7 @@ public class PlayerScript : MonoBehaviour
         if (jumpKeyPressed && groundedPlayer)
         {
             playerVelocity.y += Mathf.Sqrt(JUMP_HEIGHT * -3.0f * GRAVITY_VALUE);
+            jumpSound.Play();
         }
 
         playerVelocity.y += GRAVITY_VALUE * Time.deltaTime;
@@ -111,7 +107,7 @@ public class PlayerScript : MonoBehaviour
         if (health <= 0)
         {
             health = 0;
-            AudioSource.PlayClipAtPoint(deathSound.clip, transform.position);
+            AudioSource.PlayClipAtPoint(deathSound.clip, transform.position, 1.0f);
             Vector2 randomPosition = Random.insideUnitCircle * 2;
             gameObject.transform.position = new Vector3(randomPosition.x, 7, randomPosition.y);
             health = 1;
@@ -137,17 +133,5 @@ public class PlayerScript : MonoBehaviour
     private void FixedUpdate()
     {
         playerFireHandler();
-
-        //if (Physics.OverlapSphere(groundCheckTransform.position, 0.1f, playerMask).Length == 0)
-        //{
-        //    return;
-        //}
-
-        //if (jumpKeyPressed)
-        //{
-        //    rgdbody.AddForce(Vector3.up * JUMP_POWER, ForceMode.VelocityChange);
-        //    jumpKeyPressed = false;
-       // }
-        
     }
 }

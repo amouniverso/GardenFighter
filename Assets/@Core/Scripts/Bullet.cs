@@ -21,7 +21,7 @@ public class Bullet : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            PlayerScript player = other.GetComponent<PlayerScript>();
+            Player player = other.GetComponent<Player>();
             player.health--;
         }
         Destroy(gameObject);

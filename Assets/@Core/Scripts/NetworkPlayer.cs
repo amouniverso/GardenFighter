@@ -25,10 +25,10 @@ namespace HelloWorld
 
         void SetHealth()
         {
-            PlayerScript player = GetComponent<PlayerScript>();
+            Player player = GetComponent<Player>();
             Debug.Log(player.playerNumber.ToString());
             string healthRendererName;
-            if (player.playerNumber == PlayerScript.PlayerNumber.FIRST)
+            if (player.playerNumber == Player.PlayerNumber.FIRST)
             {
                 healthRendererName = "PlayerHealth1";
             }
