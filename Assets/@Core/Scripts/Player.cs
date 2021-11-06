@@ -1,13 +1,17 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using TMPro;
+using UnityEngine.InputSystem.Users;
 
-public class Player : MonoBehaviour
+public class Player : MonoBehaviour, PlayerInputActions.IPlayerActions
 {
     [SerializeField] Rigidbody bullet;
     [SerializeField] public int health;
     [SerializeField] public PlayerNumber playerNumber;
     [SerializeField] private AudioSource jumpSound;
     [SerializeField] private AudioSource deathSound;
+    [SerializeField] private GameObject headHeaderTextComp;
+    [SerializeField] private int playerId;
 
     bool jumpKeyPressed;
     bool fireKeyPressed;
@@ -24,15 +28,53 @@ public class Player : MonoBehaviour
 
     private CharacterController chController;
     private Camera mainCamera;
+    private TextMeshProUGUI headHeaderText;
 
-    public void Fire(InputAction.CallbackContext context)
+    PlayerInputActions controls;
+
+    void Awake()
+    {
+        chController = GetComponent<CharacterController>();
+        deathSound = GetComponent<AudioSource>();
+        headHeaderText = headHeaderTextComp.GetComponent<TextMeshProUGUI>();
+        mainCamera = Camera.main;
+    }
+
+    public void OnEnable()
+    {
+        if (controls == null)
+        {
+            controls = new PlayerInputActions();
+            // Tell the "gameplay" action map that we want to get told about
+            // when actions get triggered.
+            controls.Player.SetCallbacks(this);
+        }
+        controls.Player.Enable();
+        InputUser user;
+        foreach (PlayersManager.ConnectedPlayer player in PlayersManager.connectedPlayers)
+        {
+            if (player.selectedCharacter == playerId)
+            {
+                user = InputUser.PerformPairingWithDevice(player.playerControl.device);
+                user.AssociateActionsWithUser(controls);
+                break;
+            }
+        }
+        //user.ActivateControlScheme("Player");
+    }
+
+    public TextMeshProUGUI GetHeadHeaderTextComp()
+    {
+        return headHeaderText;
+    }
+    public void OnFire(InputAction.CallbackContext context)
     {
         if (!context.performed) return;
         Debug.Log("Fire!");
         fireKeyPressed = true;
     }
 
-    public void Move(InputAction.CallbackContext context)
+    public void OnMove(InputAction.CallbackContext context)
     {
         if (context.started) return;
         Debug.Log("Move!");
@@ -41,7 +83,7 @@ public class Player : MonoBehaviour
         playerMoveInput.y = 0f;
     }
 
-    public void Look(InputAction.CallbackContext context)
+    public void OnLook(InputAction.CallbackContext context)
     {
         if (context.started) return;
         Debug.Log("Look!");
@@ -50,7 +92,7 @@ public class Player : MonoBehaviour
         playerLookDirection.y = 0f;
     }
 
-    public void Jump(InputAction.CallbackContext context)
+    public void OnJump(InputAction.CallbackContext context)
     {
         if (context.performed)
         {
@@ -67,13 +109,6 @@ public class Player : MonoBehaviour
     {
         FIRST = 1,
         SECOND = 2
-    }
-
-    void Start()
-    {
-        chController = GetComponent<CharacterController>();
-        deathSound = GetComponent<AudioSource>();
-        mainCamera = Camera.main;
     }
 
     void playerMoveHandler()
@@ -134,4 +169,24 @@ public class Player : MonoBehaviour
     {
         playerFireHandler();
     }
+
+    //public void OnMove(InputAction.CallbackContext context)
+    //{
+    //    throw new System.NotImplementedException();
+    //}
+
+    //public void OnLook(InputAction.CallbackContext context)
+    //{
+    //    throw new System.NotImplementedException();
+    //}
+
+    //public void OnFire(InputAction.CallbackContext context)
+    //{
+    //    throw new System.NotImplementedException();
+    //}
+
+    //public void OnJump(InputAction.CallbackContext context)
+    //{
+    //    throw new System.NotImplementedException();
+    //}
 }

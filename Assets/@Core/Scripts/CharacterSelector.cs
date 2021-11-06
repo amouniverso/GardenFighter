@@ -5,12 +5,20 @@ using UnityEngine;
 public class CharacterSelector : MonoBehaviour
 {
     [SerializeField] private GameObject[] characters;
+    [SerializeField] private int tableId;
 
     private int selectedCharacter = 0;
 
     public int getSelectedCharacter()
     {
         return selectedCharacter;
+    }
+
+    private void UpdateConnectedPlayersCharacterId()
+    {
+        PlayersManager.ConnectedPlayer connectedPlayer = PlayersManager.connectedPlayers[tableId];
+        connectedPlayer.selectedCharacter = selectedCharacter;
+        PlayersManager.connectedPlayers[tableId] = connectedPlayer;
     }
     public void NextCharacter()
     {
@@ -21,6 +29,7 @@ public class CharacterSelector : MonoBehaviour
             selectedCharacter = 0;
         }
         characters[selectedCharacter].SetActive(true);
+        UpdateConnectedPlayersCharacterId();
     }
 
     public void PreviousCharacter()
@@ -32,5 +41,6 @@ public class CharacterSelector : MonoBehaviour
             selectedCharacter = characters.Length - 1;
         }
         characters[selectedCharacter].SetActive(true);
+        UpdateConnectedPlayersCharacterId();
     }
 }

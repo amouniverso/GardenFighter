@@ -25,13 +25,13 @@ public class PlayersManager : MonoBehaviour
     private void Awake()
     {
        ++InputUser.listenForUnpairedDeviceActivity;
-        InputUser.onUnpairedDeviceUsed += SpawnPlayer;
+        InputUser.onUnpairedDeviceUsed += SpawnPlayerModel;
     }
 
-    void SpawnPlayer(InputControl control, InputEventPtr eventPtr)
+    void SpawnPlayerModel(InputControl control, InputEventPtr eventPtr)
     {
         // Ignore anything but button presses.
-        if (!(control is ButtonControl)) return;
+        if (!(control is ButtonControl) || (control.device is Mouse)) return;
 
         int playerCardNumber = 0;
         foreach (GameObject table in turnTables)
@@ -40,22 +40,22 @@ public class PlayersManager : MonoBehaviour
             {
                 table.SetActive(true);
 
-                CharacterSelector tableCharacterSelector = table.GetComponent<CharacterSelector>();
                 ConnectedPlayer connectedPlayer = new ConnectedPlayer();
-                connectedPlayer.selectedCharacter = tableCharacterSelector.getSelectedCharacter();
                 connectedPlayer.playerControl = control;
                 connectedPlayers.Add(connectedPlayer);
 
-                playerCards[playerCardNumber].GetComponent<PlayerCard>().backgroundText.SetActive(false);
+                PlayerCard playerCard = playerCards[playerCardNumber].GetComponent<PlayerCard>();
+                playerCard.GetBackgroundTextComp().SetActive(false);
+                playerCard.GetInputControlTypeText().text = control.device.displayName;
                 break;
             }
             playerCardNumber++;
         }
 
         Debug.Log("Button pressed.Control: " + control);
-        inputUsers.Add(InputUser.PerformPairingWithDevice(control.device));
 
-        //PlayerInput.Instantiate(playerPrefab, device: control.device);
+        //Bind the device to a player
+        inputUsers.Add(InputUser.PerformPairingWithDevice(control.device));
     }
 
     private void OnDestroy()
@@ -64,7 +64,7 @@ public class PlayersManager : MonoBehaviour
         {
             user.UnpairDevicesAndRemoveUser();
         }
-        InputUser.onUnpairedDeviceUsed -= SpawnPlayer;
+        InputUser.onUnpairedDeviceUsed -= SpawnPlayerModel;
     }
 
 }
