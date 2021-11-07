@@ -55,9 +55,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4475634021023087989, guid: 01648b5480fcaa34bbfc5fc6cb2595b5, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5649911144134915887, guid: 01648b5480fcaa34bbfc5fc6cb2595b5, type: 3}
       propertyPath: m_Name
       value: BeardPlayerModel
+      objectReference: {fileID: 0}
+    - target: {fileID: 8917108050447528942, guid: 01648b5480fcaa34bbfc5fc6cb2595b5, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6999406688730208683, guid: 01648b5480fcaa34bbfc5fc6cb2595b5, type: 3}

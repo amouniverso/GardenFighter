@@ -55,9 +55,17 @@ PrefabInstance:
       propertyPath: m_DefaultControlScheme
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 2447554766825729387, guid: 82867fa45e71c114da0273da288f5b93, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5873634246276638513, guid: 82867fa45e71c114da0273da288f5b93, type: 3}
       propertyPath: m_Name
       value: GirlPlayerModel
+      objectReference: {fileID: 0}
+    - target: {fileID: 7229471456692708336, guid: 82867fa45e71c114da0273da288f5b93, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 9135886331527563701, guid: 82867fa45e71c114da0273da288f5b93, type: 3}

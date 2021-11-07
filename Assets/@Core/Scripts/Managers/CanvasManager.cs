@@ -7,11 +7,30 @@ using UnityEngine.UI;
 public class CanvasManager : MonoBehaviour
 {
     [SerializeField] Button startButton;
-    [SerializeField] Button[] readyButtons;
+    [SerializeField] Toggle[] readyButtons;
 
+    private bool isReady = false;
     public void LoadScene(string sceneName)
     {
         SceneManager.LoadScene(sceneName);
+    }
+
+    private void Update()
+    {
+        isReady = true;
+        foreach(Toggle toggle in readyButtons)
+        {
+            if (!toggle.isOn)
+            {
+                isReady = false;
+                break;
+            } 
+        }
+        if (PlayersManager.connectedPlayers.Capacity == 0)
+        {
+            isReady = false;
+        }
+        startButton.interactable = isReady;
     }
 
 }

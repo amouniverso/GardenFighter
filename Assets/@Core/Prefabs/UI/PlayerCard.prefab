@@ -293,6 +293,7 @@ GameObject:
   - component: {fileID: 1116063357769168947}
   - component: {fileID: 4192304218671404634}
   - component: {fileID: 2687738398786112313}
+  - component: {fileID: 4069935712955209722}
   m_Layer: 5
   m_Name: ReadyButton
   m_TagString: Untagged
@@ -397,7 +398,19 @@ MonoBehaviour:
   m_Group: {fileID: 0}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 4069935712955209722}
+        m_TargetAssemblyTypeName: ReadyButtonBehaviour, Assembly-CSharp
+        m_MethodName: ToggleButtonText
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 0
 --- !u!222 &2687738398786112313
 CanvasRenderer:
@@ -407,6 +420,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5872375161387006757}
   m_CullTransparentMesh: 1
+--- !u!114 &4069935712955209722
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5872375161387006757}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e63bb951427602842a1a3a68654d96b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttonText: {fileID: 6736738147666472246}
 --- !u!1 &6037431390581171656
 GameObject:
   m_ObjectHideFlags: 0
@@ -936,7 +962,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Ready
+  m_text: Not ready
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: e73a58f6e2794ae7b1b7e50b7fb811b0, type: 2}

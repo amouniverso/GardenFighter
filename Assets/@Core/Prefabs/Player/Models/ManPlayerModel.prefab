@@ -7,9 +7,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 603490197181554722, guid: 7fa337bdc19719048baaa9b3f797756e, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4447143990058427619, guid: 7fa337bdc19719048baaa9b3f797756e, type: 3}
       propertyPath: m_Name
       value: ManPlayerModel
+      objectReference: {fileID: 0}
+    - target: {fileID: 5603406784219279033, guid: 7fa337bdc19719048baaa9b3f797756e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8426254965254899493, guid: 7fa337bdc19719048baaa9b3f797756e, type: 3}
       propertyPath: m_DefaultControlScheme

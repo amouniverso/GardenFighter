@@ -141,10 +141,13 @@ public class Player : MonoBehaviour, PlayerInputActions.IPlayerActions
     {
         if (health <= 0)
         {
+            Debug.Log("Killed");
             health = 0;
             AudioSource.PlayClipAtPoint(deathSound.clip, transform.position, 1.0f);
             Vector2 randomPosition = Random.insideUnitCircle * 2;
-            gameObject.transform.position = new Vector3(randomPosition.x, 7, randomPosition.y);
+            chController.enabled = false;
+            transform.position = new Vector3(randomPosition.x, 7, randomPosition.y);
+            chController.enabled = true;
             health = 1;
         }
     }
@@ -170,23 +173,4 @@ public class Player : MonoBehaviour, PlayerInputActions.IPlayerActions
         playerFireHandler();
     }
 
-    //public void OnMove(InputAction.CallbackContext context)
-    //{
-    //    throw new System.NotImplementedException();
-    //}
-
-    //public void OnLook(InputAction.CallbackContext context)
-    //{
-    //    throw new System.NotImplementedException();
-    //}
-
-    //public void OnFire(InputAction.CallbackContext context)
-    //{
-    //    throw new System.NotImplementedException();
-    //}
-
-    //public void OnJump(InputAction.CallbackContext context)
-    //{
-    //    throw new System.NotImplementedException();
-    //}
 }
