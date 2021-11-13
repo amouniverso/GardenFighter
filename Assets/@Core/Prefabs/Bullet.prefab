@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: -6109656116682757002}
   - component: {fileID: 7589970633512059615}
   - component: {fileID: 8151072995644810576}
-  - component: {fileID: 1009114522554386438}
+  - component: {fileID: 4985006142399904294}
   m_Layer: 0
   m_Name: Bullet
   m_TagString: Untagged
@@ -331,7 +331,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!122 &1009114522554386438
+--- !u!122 &4985006142399904294
 Halo:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
